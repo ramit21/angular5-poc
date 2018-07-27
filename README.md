@@ -27,7 +27,7 @@ is the process of compiling one language to another. In angular, Traceur compile
 
 TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
 
-#Bindings
+# Bindings
 
  https://coursetro.com/posts/code/108/Angular-5-Interpolation,-Property-Binding-&-Event-Binding-Tutorial
 
@@ -215,7 +215,7 @@ export class AppComponent {
 ```
 <app-root></app-root> invokes above component in an html.
 
-#constructor vs ngOnInit()
+# constructor vs ngOnInit()
 constructor is ES6/TS specific feature of the class itself, and not an angular feature. Angular doesn't control constructor. Use constructors for dependency injections.
 
 ngOninit() on the other hand is purely to give us a signal that Angular has finished initialising the component. This phase includes the first pas at chnge detection against the properties that we may bind to the component itself - such as using an @Input decorator. In other words, @Input properties are available in ngOninit() but undefined inside the constructor.
@@ -225,7 +225,7 @@ Sequence of Angular lifecycle hooks:
 Onchange() - OnInit() - Docheck() - AfterContentInit() - AfterContentChecked() - AfterViewInit() - AfterViewChecked() - OnDestroy()
 
 
-#Evolution of angular:
+# Evolution of angular:
 
 Angular 2 : replaced angular 1's $scope with Components. Based on Typescript, it supports object oriented programming.
 
@@ -235,7 +235,7 @@ Angular 4: Slight imporvements like improved ngIf, ngfor etc
 
 Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router hooks. Build optimizer to make budled app smaller and faster.
 
-#Misc Angular default documentation
+# Misc Angular default documentation
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
 ## Development server
