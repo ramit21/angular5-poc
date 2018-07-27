@@ -26,7 +26,7 @@ index.html is the starting point, which has the <app-root> (or as named) tag tha
 is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers.
 
 TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
-——————————
+
 #Bindings
 
  https://coursetro.com/posts/code/108/Angular-5-Interpolation,-Property-Binding-&-Event-Binding-Tutorial
@@ -67,7 +67,8 @@ onCreateClick() : void {
         this.bugCreated.emit(newBug);
     }
 
-On click of button, onCreateClick() is called, which creates a new bug, and transmits an event (function marked with @Output) with the bug as data. 
+On click of button, onCreateClick() is called, which creates a new bug, 
+and transmits an event (function marked with @Output) with the bug as data. 
 
 In the parent component, the html has this:
 <bug-edit (bugCreated)="onNewBugCreated($event)" ></bug-edit>
@@ -78,7 +79,7 @@ In the parent component, the html has this:
   }
 ```
 
-#Angular Modules and scopes:
+# Angular Modules and scopes:
 
 Instead of cramping everything into app.module.ts, create individual modules for say pipes or utility components, and include these modules in the app.module. 
 
@@ -86,14 +87,14 @@ Components have private scope, whereas services have global scope and can be inj
 
 (See how UtilsModule.ts exports various pipes, and is itself imported into the app.module)
 
-#Importing and using 3rd party libraries
+# Importing and using 3rd party libraries
 eg. moment.js (https://www.npmjs.com/package/angular-moment)
 ```
 npm install angular-moment moment --save
 then do import * as moment from ‘moment’
 ```
 
-#Pipes
+# Pipes
 https://angular.io/guide/pipes
 
 Transforming data in templates using build in pipes or custom pipes. Pipes also take optional arguments for fine tuning the results eg.
@@ -140,25 +141,29 @@ Componenets can share data via events or via services.
 # Deploying the bundled app:
 
 Webpack is the module bundler used in angular2 onwards.
+```
+ng build 
+``` 
+creates following in dist folder: main.bundle,js, polyfil.bundle.js, main.html etc. 
 
-ng build -> creates following in dist folder: main.bundle,js, polyfil.bundle.js, main.html etc. 
-
-if you run with prod flag: 
-
-ng build —prod, the size of the bundled js is lot smaller, on the hindsite, the latter build command takes longer time to bundle the application.
+If you run with prod flag: 
+```
+ng build —prod
+```
+ The size of the bundled js is lot smaller, on the hindsite, the latter build command takes longer time to bundle the application.
 
 If you want to deploy these bundled files, then you need to run the following command:
-
+```
 ng build —prod —base-href=“url”
+```
 
 You can also deploy using github pages.
 
 Given that your project is checked into github, run the following 2 commands:
-
+```
 ng build —prod —base-href=“url”
-
 angular-cli-ghpages
-
+```
 
 # Router:
 https://angular.io/guide/router
