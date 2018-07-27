@@ -1,0 +1,6 @@
+[
+    {"id": 1, "name" : "Ramit", "game": "tt"},
+    {"id": 2, "name" : "Ronaldo", "game": "soccer"},
+    {"id": 3, "name" : "Virat Kohli", "game": "cricket"},
+    {"id": 4, "name" : "Messi", "game": "soccer"}
+]

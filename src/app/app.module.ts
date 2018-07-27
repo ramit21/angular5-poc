@@ -7,11 +7,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bug-tracker/bug-tracker.component';
 import { BugDataService } from './service/bug-data.service';
+import { EmployeeService } from './service/employee.service';
 import { BugEditComponent } from './views/bugEdit.component';
 import { BugStatsComponent } from './views/bugStats.component';
 import { ClosedCountPipe } from './pipes/closedCount.pipe';
 import { AboutComponent } from './about/about/about.component';
-
+import { EmployeeComponent } from './employee/employee.component';
+import { HttpModule } from '@angular/http';
 
 const routes: Routes = [
   {
@@ -19,9 +21,13 @@ const routes: Routes = [
       component: BugTrackerComponent
   },
   {
+    path : 'employee',
+    component: EmployeeComponent
+  },
+  {
     path : 'about/:id',
     component: AboutComponent
-}
+  }
 ];
 
 @NgModule({
@@ -32,15 +38,17 @@ const routes: Routes = [
     BugStatsComponent,
     ClosedCountPipe,
     AboutComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     UtilsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpModule
   ],
   exports: [RouterModule],
-  providers: [BugDataService],
+  providers: [BugDataService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,8 @@ https://youtu.be/oa9cnWTpqP8
 
 https://programmingwithmosh.com/angular/angular-4-tutorial/
 
+https://angular.io/guide/cheatsheet
+
 npm install -g @angular/cli -> installs angular CLI
 
 ng new project-name. -> scaffolds a new project
@@ -16,11 +18,11 @@ ng test -> launches unit test cases
 
 ng g c folder/name -> creates a new controller inside folder structure specified and also updates app.module with it
 
-ng g service name -> creates service
+ng g s folder/name -> creates service. 's' is shortfrom of service here.
 
 Note that services are created with @Injectable() so that they can be injected directly in constructors of controllers or other services.
 
-index.html is the starting point, which has the <app-root> (or as named) tag that points to main app component tag.
+Bootstrapping Angular: index.html is the starting point, which has the <app-root> (or as named)tag that points to main app component tag.
 
 # Transpiling 
 is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers.
@@ -235,6 +237,32 @@ Angular 4: Slight imporvements like improved ngIf, ngfor etc
 
 Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router hooks. Build optimizer to make budled app smaller and faster.
 
+# HttpClient
+
+To make http requests to client, first import HttpModule as follows:
+```
+import { HttpModule } from '@angular/http';
+```
+Then write a service that makes GET/POST requests and returns an Observable. 
+
+You may also map the observable to json or some other format.
+
+This observable must be suscribed from the main component where data is actually required
+
+The Employee component of this POC shows how to make a GET call to the backend
+
+## Observable vs Promise:
+
+A Promise handles a single event when an async operation completes or fails. Event cancellation is not possible.
+
+An Observable allows to pass zero or more events where the callback is called for each event.
+
+Observable also has the advantage over Promise to be cancelable. If the result of an HTTP request to a server or some other expensive async operation isn't needed anymore, or timeout has to be handled, the Subscription of an Observable allows to cancel the subscription, while a Promise will eventually call the success or failed callback even when you don't need the notification or the result it provides anymore.
+
+Observable provides operators like map, forEach, reduce, ... similar to an array
+
+There are also powerful operators like retry(), or replay(), ... that are often quite handy.
+
 # Misc Angular default documentation
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
@@ -263,5 +291,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-Q. Observable vs Promises
 
