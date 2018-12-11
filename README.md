@@ -221,7 +221,7 @@ export class AppComponent {
 # constructor vs ngOnInit()
 constructor is ES6/TS specific feature of the class itself, and not an angular feature. Angular doesn't control constructor. Use constructors for dependency injections.
 
-ngOninit() on the other hand is purely to give us a signal that Angular has finished initialising the component. This phase includes the first pas at chnge detection against the properties that we may bind to the component itself - such as using an @Input decorator. In other words, @Input properties are available in ngOninit() but undefined inside the constructor.
+ngOninit() on the other hand is purely to give us a signal that Angular has finished initialising the component. This phase includes the first pass at change detection against the properties that we may bind to the component itself - such as using an @Input decorator. In other words, @Input properties are available in ngOninit() but undefined inside the constructor.
 
 Sequence of Angular lifecycle hooks:
 
