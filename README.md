@@ -43,9 +43,10 @@ Interpolation is a one way binding, value going from component to template for s
 ```
  2. Property binding
 
-Property binding: Angular evaluates an expression and assigns it some property of underlyin HTML DOM element, component, service etc.
+Property binding: Angular evaluates an expression and assigns it some property of underlying HTML DOM element, component, service etc. This is also one way.
 ```
 <input type="submit" class="btn" [value]="btnText">
+here btnText is fetched from underlying controller and assigned to value property.
 ```
 3. Two way binding
 2 Way data binding:
