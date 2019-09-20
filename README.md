@@ -193,6 +193,12 @@ Notice how we have mocked the dependency of bug-tracker component in the app.com
 
 You can also import and inject the actual components/services/pipes etc.
 
+Also see employee.component.spec.ts on how to mock a service present in the constructor of the component:
+ providers: [ { provide: EmployeeService, useClass: FakeEmployeeService} ]
+ 
+To mock http calls from the service, see employee.service.spect.ts:
+
+
 # Component lifecycle:
 1. Create
 2. Render
