@@ -178,21 +178,27 @@ is the process of compiling one language to another. In angular, Traceur compile
 
 TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
 
-**Webpack**: Deploying the bundled app:
+**Webpack**: To build and bundle the app:
 
 Webpack is the module bundler used in angular2 onwards.
+
+Below command creates following in dist folder: main.bundle,js, polyfil.bundle.js, main.html etc. The main.bundle is the main application code, polyfil is for browser inter-compatibilities.
+
 ```
 ng build 
 ``` 
-creates following in dist folder: main.bundle,js, polyfil.bundle.js, main.html etc. 
 
-If you run with prod flag: 
+Ahead of time compilation:
+
+If you run with prod/aot flag: 
 ```
 ng build —prod
+or
+ng build -aot
 ```
  The size of the bundled js is lot smaller, on the hindsite, the latter build command takes longer time to bundle the application.
 
-If you want to deploy these bundled files, then you need to run the following command:
+If you want to build and deploy in a single command, then do as:
 ```
 ng build —prod —base-href=“url”
 ```
