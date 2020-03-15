@@ -175,19 +175,20 @@ where bugs is member of containing component
 **Ans.** via events or via services.
 
 **Transpiling** 
-is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers.
+is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers. Typescript is a superset of javascript with features that modern browsers cannot understand directly.
 
 TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
 
-**Webpack**: To build and bundle the app:
-
-Webpack is the module bundler used in angular2 onwards.
-
-Below command creates following in dist folder: main.bundle,js, polyfil.bundle.js, main.html etc. The main.bundle is the main application code, polyfil is for browser inter-compatibilities.
-
+**Webpack**: Build optimisation tool. It packages our code into bundles and then optimises the bundled code.
 ```
 ng build 
 ``` 
+Above command creates following in dist folder, and injects reference to these in our index.html (you can see this by doing view source on the browser): 
+1. main.bundle.js: main application code. 
+2. polyfil.bundle.js: browser inter-compatibilities. 
+3. styles.bundle.js: all stylesheets.
+4. vendor.bundle.js: 3rd party libraries.
+5. inline.bundle.js: 
 
 Ahead of time compilation:
 
@@ -211,6 +212,8 @@ Given that your project is checked into github, run the following 2 commands:
 ng build —prod —base-href=“url”
 angular-cli-ghpages
 ```
+
+**HMR**: Hot Module Replacement is webpack's feature that ensures that if you change the source code, the webpack automatically updates the bundles and dispatches them to the browser. Hence when you change the code at time of dev, no need to refresh the browser.
 
 ## Unit Testing:
 
@@ -286,6 +289,22 @@ Observable also has the advantage over Promise to be cancelable. If the result o
 Observable provides operators like map, forEach, reduce, ... similar to an array
 
 There are also powerful operators like retry(), or replay(), ... that are often quite handy.
+
+**Typescript datatypes**:
+```
+let a: number;
+let b: boolean;
+let c: string;
+let d: any;
+let e: number[] = [1,2,3];
+let f: any[] = [1, true, 'a'];
+const colRed = 0; //constants
+
+enum Color {Red=0, Green=1, Purple=2};
+let col = Color.Green;
+```
+
+
 
 **References**:
 
