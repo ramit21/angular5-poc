@@ -273,7 +273,7 @@ Angular 4: Slight imporvements like improved ngIf, ngfor etc
 
 Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router hooks. Build optimizer to make budled app smaller and faster.
 
-Angular 1x cersions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
+Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
 
 **Observable vs Promise**:
 
