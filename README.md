@@ -132,7 +132,7 @@ In html, give the following along with links to various routes via menu bar:
 **Pipes**
 https://angular.io/guide/pipes
 
-Transforming data in templates using build in pipes or custom pipes. Pipes also take optional arguments for fine tuning the results eg.
+Transforming data in templates using angular provided pipes or by creating custom pipes. Pipes also take optional arguments for fine tuning the results eg.
 ```
 <p>The hero's birthday is {{ birthday | date:"MM/dd/yy" }} </p> or via binding:
 <p>The hero's birthday is {{ birthday | date:format }} </p> where format is a member of component class
@@ -140,9 +140,9 @@ Transforming data in templates using build in pipes or custom pipes. Pipes also 
 
 There are two categories of pipes: pure and impure. By default pipes are pure.
 
-A pure pipe is either a change to a primitive input value (String, Number, Boolean, Symbol) or a changed object reference (Date, Array, Function, Object). Angular ignores changes within (composite) objects. It won't call a pure pipe if you change an input month, add to an input array, or update an input object property.
+A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe.
 
-On the other hand, Angular executes an impure pipe during every component change detection cycle. An impure pipe is called often, as often as every keystroke or mouse-move.
+An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes inlcude change in array object or composite object contents.
 
 **ngFor, click, [ngClass] example**
 ```
@@ -197,7 +197,7 @@ ng build —prod
 or
 ng build -aot
 ```
- The size of the bundled js is lot smaller, on the hindsite, the latter build command takes longer time to bundle the application.
+ The size of the bundled js is lot smaller and the browser load time is less, on the hindsite, the aot compilation takes longer time to bundle the application.
 
 If you want to build and deploy in a single command, then do as:
 ```
