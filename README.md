@@ -107,9 +107,9 @@ Then write a service that makes GET/POST requests and returns an Observable.
 
 You may also map the observable to json or some other format.
 
-This observable must be suscribed from the main component where data is actually required
+This observable must be suscribed from the main component where data is actually required.
 
-The Employee component of this POC shows how to make a GET call to the backend
+The Employee component of this POC shows how to make a GET call to the backend.
 
 **Router**:
 
