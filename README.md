@@ -169,6 +169,7 @@ where bugs is member of containing component
 @Input() in child and @Output in parent component
 
 ———————————
+
 **Q.** How can components share data?
 
 **Ans.** via events or via services.
