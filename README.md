@@ -111,6 +111,8 @@ This observable must be suscribed from the main component where data is actually
 
 The Employee component of this POC shows how to make a GET call to the backend.
 
+**Optimistic vs pessimistic updates:** Optimistic update: when you call the http api, dont wait for the response, and update the UI immediately to give fast update to the user. In case of an error, in the error handler of the api call, you prepare to rollback the changes done to the UI previously.
+
 **Router**:
 
 https://angular.io/guide/router
@@ -266,18 +268,6 @@ Sequence of Angular lifecycle hooks:
 
 Onchange() - OnInit() - Docheck() - AfterContentInit() - AfterContentChecked() - AfterViewInit() - AfterViewChecked() - OnDestroy()
 
-**Evolution of angular**:
-
-Angular 2 : replaced angular 1's $scope with Components. Based on Typescript, it supports object oriented programming.
-
-No angular 3 due to misalignment of router package. Angular 2 was already using a router v3 library, so Google just skipped angular ver 3 altogether.
-
-Angular 4: Slight imporvements like improved ngIf, ngfor etc
-
-Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router hooks. Build optimizer to make budled app smaller and faster.
-
-Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
-
 **Observable vs Promise**:
 
 A Promise handles a single event when an async operation completes or fails. Event cancellation is not possible.
@@ -304,7 +294,17 @@ enum Color {Red=0, Green=1, Purple=2};
 let col = Color.Green;
 ```
 
+**Evolution of angular**:
 
+Angular 2 : replaced angular 1's $scope with Components. Based on Typescript, it supports object oriented programming.
+
+No angular 3 due to misalignment of router package. Angular 2 was already using a router v3 library, so Google just skipped angular ver 3 altogether.
+
+Angular 4: Slight imporvements like improved ngIf, ngfor etc
+
+Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router hooks. Build optimizer to make budled app smaller and faster.
+
+Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
 
 **References**:
 
