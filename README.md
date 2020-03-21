@@ -42,9 +42,12 @@ Interpolation is a one way binding, value going from component to template for s
 ```
 <input type="submit" class="btn" value="{{ btnText }}">
 ```
+
+Note that interpolation is a sytactical sugar for property binding only as shown in 2 below. So for string values, interpolations can be prefered, for others, use property binding.
+
  2. Property binding
 
-Property binding: Angular evaluates an expression and assigns it some property of underlying HTML DOM element, component, service etc. This is also one way. Eg. below, btnText is coming from underlying controller. 
+Property binding: This is also one way. Eg. below, btnText is coming from underlying controller. 
 ```
 <input type="submit" class="btn" [value]="btnText">
 ```
@@ -115,20 +118,49 @@ The Employee component of this POC shows how to make a GET call to the backend.
 
 **Router**:
 
-https://angular.io/guide/router
+Router helps implement in SPA in true sense. In legacy applications, you would give <a href="url">, but this would cause lag as html is downloaded everytime you move through the links. Whereas in SPA, a single page is downloaded and as you move between routes, only the content to be rendered is downloaded from server. Instead of href, use routerLink.
 
 The Angular Router enables navigation from one view to the next as users perform application tasks.
 
-Notice the following in app.module:
+Steps to enable routing:
 
+**Step 1**: app.module
 ```
 import { Routes, RouterModule } from '@angular/router';
 
 routes = url + component mapping
 ```
-In html, give the following along with links to various routes via menu bar:
+**Step 2**: Add a router outlet in index.html. When angular sees this directive, it renders the component associated with the current route after <router-outlet></router-outlet> tag (and not inside it)
 ```
 <router-outlet></router-outlet>
+```
+
+**Step 3**: Add links.
+
+See app.module for router links to different components. Order of the routes is important. Hence keep the default route handling at the end.
+```
+@NgModule({
+   imports: [
+    RouterModule.forRoot(routes)
+    ...
+```
+
+Route paramters: Note that paramters passed via routes are 'observables' and must be suscribed to access the value.
+
+You can invoke routes from html of components (like changing route on button click etc.) in following ways:
+
+```
+<a routerLink="/posts">posts</a>
+
+or, this way when passing paramters:
+<a [routerLink]="['/posts/', post.id]">
+
+or, instead of paramters, you can also pass query params:
+<a routerLink="/posts" [queryParams]="{page:1,size:10}">posts</a>
+
+Query params can then be read using :
+this.route.paramMap.suscribe();
+this.route.snapshot.paramMap.get('page');
 ```
 
 **Pipes**
@@ -270,15 +302,13 @@ Onchange() - OnInit() - Docheck() - AfterContentInit() - AfterContentChecked() -
 
 **Observable vs Promise**:
 
-A Promise handles a single event when an async operation completes or fails. Event cancellation is not possible.
+Promises are eager, whereas observables are lazy. Nothing happens from functions returning observables, unless you subscribe to them. On the other hand, as soon as you create a promise, the code gets executed.
 
-An Observable allows to pass zero or more events where the callback is called for each event.
+A Promise handles a single event when an async operation completes or fails. Event cancellation is not possible. Observables on the other hand are cancellable.
 
-Observable also has the advantage over Promise to be cancelable. If the result of an HTTP request to a server or some other expensive async operation isn't needed anymore, or timeout has to be handled, the Subscription of an Observable allows to cancel the subscription, while a Promise will eventually call the success or failed callback even when you don't need the notification or the result it provides anymore.
+Observable provides operators like map, forEach, reduce, ... (similar to an array) which are very helpful on operting on the data being returned. Reactive Programming based operators like retry(n), or replay(), ... are used to replay in case of failure. toPromise() operator can be used to convert an observable to a promise.
 
-Observable provides operators like map, forEach, reduce, ... similar to an array
-
-There are also powerful operators like retry(), or replay(), ... that are often quite handy.
+One can also suscribe to multiple observables, something not possible with a promise.
 
 **Typescript datatypes**:
 ```

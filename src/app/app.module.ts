@@ -13,6 +13,7 @@ import { BugStatsComponent } from './views/bugStats.component';
 import { ClosedCountPipe } from './pipes/closedCount.pipe';
 import { AboutComponent } from './about/about/about.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpModule } from '@angular/http';
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path : 'about/:id',
     component: AboutComponent
+  },
+  {
+    path : '**',
+    component: NotFoundComponent
   }
 ];
 
@@ -39,6 +44,7 @@ const routes: Routes = [
     ClosedCountPipe,
     AboutComponent,
     EmployeeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
