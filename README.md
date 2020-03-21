@@ -167,7 +167,32 @@ A pure pipe is only called when Angular detects a change in the value or the par
 
 An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes inlcude change in array object or composite object contents.
 
-**ngFor, click, [ngClass] example**
+**Angular Directives**: work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives ehich take a selector as a parameter.
+
+Some common Angular provided directives:
+
+ngIf: render the current element only when the if condition is satisfied. eg.
+```
+<div *ngIf="courses.length == 0"> ... </div>
+```
+
+ngSwitchCase:
+```
+<div [ngSwitch]="mySwitch">
+    <div *ngSwitchCase="'abc'> ......  </div>
+    <div *ngSwitchCase="'xyz'> ......  </div>
+    <div *ngSwitchDef> ......  </div>
+</div>
+```
+
+ngForm: Angular forms
+
+hidden:
+```
+<div [hidden] = "courses.length == 0"> ... </div>
+```
+
+ngFor and ngClass example below.
 ```
 <ol>
         <li *ngFor="let bug of ( bugs | sort:sortBugBy:sortByDescending) ">
@@ -180,7 +205,15 @@ An impure pipe is called for every change detection cycle no matter whether the 
 </ol>
 ```
 
-**Component public API**: Pass input state to a component / get an output event from the component.
+The leading asterix used before directives indicates angular to rewrite the containing div inside a ng-template tag. for eg: the ngIf example shared above gets converted to:
+
+```
+<ng-template [ngIf]="courses.length > 0">
+  <div> ...  <div>
+ </ng-template> 
+```
+
+**Public Component API**: Pass input state to a component / get an output event from the component.
 
 1. @Input: used to pass **state** from parent component to the child component.
 
@@ -366,6 +399,8 @@ Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions
 **References**:
 
 Using Bootstrap with angular: https://medium.com/codingthesmartway-com-blog/using-bootstrap-with-angular-c83c3cee3f4a
+
+Reactive Forms: https://alligator.io/angular/reactive-forms-introduction/
 
 https://youtu.be/oa9cnWTpqP8
 
