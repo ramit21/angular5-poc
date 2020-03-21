@@ -51,37 +51,27 @@ Property binding: This is also one way. Eg. below, btnText is coming from underl
 ```
 <input type="submit" class="btn" [value]="btnText">
 ```
+**HTML vs DOM binding:**
+
+Note that you can do binding like above only for properties of DOM object, and not for to an attribute of html element. For the latter, you need to use attr as shown below. For eg. if you want to bind the colspan attribute of td html element, then you need to do this:
+
+```
+<td [attr.colspan]="colSpan">
+```
+
 3. Two way binding:
 
-import **FormsModule** in app.module to enable 2 way data binding for form inputs. Then configure ngModel to a value coming from underlying component:
+import **FormsModule** in app.module to enable 2 way data binding for form inputs. Then configure **ngModel** to a value coming from underlying component:
 ```
 <input type="text" [(ngModel)]="newBugName">
 ```
 
 4. Event Binding
 
-See bug-tracker.compnent.html and Bug-edit component has :
+Bind HTML events to component functions:
+
 ```
 <input type="button" value="Create New" (click)="onCreateClick()">
-
-@Output()
-    bugCreated : EventEmitter<Bug> = new EventEmitter<Bug>();
-
-onCreateClick() : void {
-        let newBug : Bug = this.bugStorage.addNew(this.newBugName);
-        this.bugCreated.emit(newBug);
-    }
-```
-On click of the button, onCreateClick() is called, which creates a new bug, 
-and transmits an event (function marked with @Output) with the bug as data. 
-
-In the parent component (and its html) catches the event like this:
-```
-<bug-edit (bugCreated)="onNewBugCreated($event)" ></bug-edit>
-
- onNewBugCreated(newBug : Bug){
-    this.bugs = [...this.bugs, newBug];
-  }
 ```
 
 **Angular Modules and scopes**:
@@ -134,7 +124,6 @@ routes = url + component mapping
 ```
 <router-outlet></router-outlet>
 ```
-
 **Step 3**: Add links.
 
 See app.module for router links to different components. Order of the routes is important. Hence keep the default route handling at the end.
@@ -191,16 +180,52 @@ An impure pipe is called for every change detection cycle no matter whether the 
 </ol>
 ```
 
-**@Input()**
-```
-@Input(‘data’).  //  a data-bound input property
-bugs : IBug[] = [];
+**Component public API**: Pass input state to a component / get an output event from the component.
 
-in html of parent containing component, this component is used as <bug-edit [data]= “bugs” ></bug-edit>
-where bugs is member of containing component
+1. @Input: used to pass **state** from parent component to the child component.
+
 ```
-@Input() and @Output help implement parent-child relatinship among components
-@Input() in child and @Output in parent component
+@Input(‘data’) //data is an alias for childBugs
+childBugs : IBug[] = [];
+
+In html of parent containing component, this component is used as 
+
+<bug-edit [data]= “parentBugs” ></bug-edit>
+
+where “parentBugs” is member of containing component
+```
+
+2. @Output: used to pass **events** (with or without state) to the containing parent component using EventEmmiter.
+
+See bug-tracker child component has :
+```
+html:
+
+<input type="button" value="Create New" (click)="onCreateClick()">
+
+component:
+
+@Output()
+    bugCreated : EventEmitter<Bug> = new EventEmitter<Bug>();
+
+onCreateClick() : void {
+        let newBug : Bug = this.bugStorage.addNew(this.newBugName);
+        this.bugCreated.emit(newBug);
+    }
+```
+On click of the button, onCreateClick() is called, which creates a new bug, 
+and transmits an event (function marked with @Output) with the bug as data. 
+
+In the parent component (and its html) the event is caught like this:
+```
+html:
+<bug-edit (bugCreated)="onNewBugCreated($event)" ></bug-edit>
+
+component:
+ onNewBugCreated(newBug : Bug){
+    this.bugs = [...this.bugs, newBug];
+  }
+```
 
 ———————————
 
@@ -337,6 +362,8 @@ Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router 
 Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
 
 **References**:
+
+Using Bootstrap with angular: https://medium.com/codingthesmartway-com-blog/using-bootstrap-with-angular-c83c3cee3f4a
 
 https://youtu.be/oa9cnWTpqP8
 
