@@ -118,7 +118,7 @@ The Employee component of this POC shows how to make a GET call to the backend.
 
 **Router**:
 
-Router helps implement in SPA in true sense. In legacy applications, you would give <a href="url">, but this would cause lag as html is downloaded everytime you move through the links. Whereas in SPA, a single page is downloaded and as you move between routes, only the content to be rendered is downloaded from server. Instead of href, use routerLink.
+Router helps implement in SPA in true sense. In legacy applications, you would give < a href="url" >, but this would cause lag as html is downloaded everytime you move through the links. Whereas in SPA, a single page is downloaded and as you move between routes, only the content to be rendered is downloaded from server. Instead of href, use routerLink.
 
 The Angular Router enables navigation from one view to the next as users perform application tasks.
 
