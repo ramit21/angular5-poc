@@ -243,7 +243,7 @@ TS is not mandatory for writing code angular 2 onwards, but typescript makes thi
 ng build 
 ``` 
 Above command creates following in dist folder, and injects reference to these in our index.html (you can see this by doing view source on the browser): 
-1. main.bundle.js: main application code. 
+1. main.bundle.js: main application code including templates. 
 2. polyfil.bundle.js: browser inter-compatibilities. 
 3. styles.bundle.js: all stylesheets.
 4. vendor.bundle.js: 3rd party libraries.
@@ -314,6 +314,8 @@ export class AppComponent {
 }
 ```
 <app-root></app-root> invokes above component in an html.
+
+Angular emulates 'shadow DOM' by encapsulating the style given in the styles-url or directly styles, so that it does not leak to the outsode world.
 
 **constructor vs ngOnInit()**
 
