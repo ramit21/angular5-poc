@@ -8,7 +8,7 @@ ng serve
 http://localhost:4200/
 ```
 
-**ng-cli**:
+## ng-cli
 
 ```
 npm install -g @angular/cli -> installs angular CLI
@@ -30,7 +30,7 @@ Note that services are created with @Injectable() so that they can be injected d
 
 Bootstrapping Angular: index.html is the starting point, which has the <app-root> (or as named) tag that points to main app component tag.
 
-# Bindings
+## Bindings
 
  https://coursetro.com/posts/code/108/Angular-5-Interpolation,-Property-Binding-&-Event-Binding-Tutorial
 
@@ -74,23 +74,7 @@ Bind HTML events to component functions:
 <input type="button" value="Create New" (click)="onCreateClick()">
 ```
 
-**Angular Modules and scopes**:
-
-Instead of cramping everything into app.module.ts, create individual modules for say pipes or utility components, and include these modules in the app.module. 
-
-Components have private scope, whereas services have global scope and can be injected anywhere. Hence component have to exported from the modules before importing their module into the app.module
-
-(See how UtilsModule.ts exports various pipes, and is itself imported into the app.module)
-
-**Importing and using 3rd party libraries**:
-
-eg. moment.js (https://www.npmjs.com/package/angular-moment)
-```
-npm install angular-moment moment --save
-then do import * as moment from ‘moment’
-```
-
-**HttpClient**
+## HttpClient
 
 To make http requests to client, first import HttpModule as follows:
 ```
@@ -106,7 +90,7 @@ The Employee component of this POC shows how to make a GET call to the backend.
 
 **Optimistic vs pessimistic updates:** Optimistic update: when you call the http api, dont wait for the response, and update the UI immediately to give fast update to the user. In case of an error, in the error handler of the api call, you prepare to rollback the changes done to the UI previously.
 
-**Router**:
+## Router
 
 Router helps implement in SPA in true sense. In legacy applications, you would give < a href="url" >, but this would cause lag as html is downloaded everytime you move through the links. Whereas in SPA, a single page is downloaded and as you move between routes, only the content to be rendered is downloaded from server. Instead of href, use routerLink.
 
@@ -152,7 +136,7 @@ this.route.paramMap.suscribe();
 this.route.snapshot.paramMap.get('page');
 ```
 
-**Pipes**
+## Pipes
 https://angular.io/guide/pipes
 
 Transforming data in templates using angular provided pipes or by creating custom pipes. Pipes also take optional arguments for fine tuning the results eg.
@@ -167,7 +151,8 @@ A pure pipe is only called when Angular detects a change in the value or the par
 
 An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes inlcude change in array object or composite object contents.
 
-**Angular Directives**: work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives ehich take a selector as a parameter.
+## Angular Directives
+Directives work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives ehich take a selector as a parameter.
 
 Some common Angular provided directives:
 
@@ -213,7 +198,10 @@ The leading asterix used before directives indicates angular to rewrite the cont
  </ng-template> 
 ```
 
-**Public Component API**: Pass input state to a component / get an output event from the component.
+You can not use ng-template directly, as angular will encapsulate this tag into another ng-template tag. Solution is to use ng-container. Read this for more information: https://www.freecodecamp.org/news/everything-you-need-to-know-about-ng-template-ng-content-ng-container-and-ngtemplateoutlet-4b7b51223691/
+
+## Public Component API
+Pass input state to a component / get an output event from the component.
 
 1. @Input: used to pass **state** from parent component to the child component.
 
@@ -260,18 +248,8 @@ component:
   }
 ```
 
-———————————
-
-**Q.** How can components share data?
-
-**Ans.** via events or via services.
-
-**Transpiling** 
-is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers. Typescript is a superset of javascript with features that modern browsers cannot understand directly.
-
-TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
-
-**Webpack**: Build optimisation tool. It packages our code into bundles and then optimises the bundled code.
+## Webpack
+Webpack is build optimisation tool. It packages our code into bundles and then optimises the bundled code.
 ```
 ng build 
 ``` 
@@ -321,7 +299,7 @@ Also see employee.component.spec.ts on how to mock a service present in the cons
 To mock http calls from the service, see employee.service.spect.ts:
 
 
-# Misc Theory
+## Misc Theory
 
 **Component lifecycle**:
 1. Create
@@ -370,6 +348,22 @@ Observable provides operators like map, forEach, reduce, ... (similar to an arra
 
 One can also suscribe to multiple observables, something not possible with a promise.
 
+**Angular Modules and scopes**:
+
+Instead of cramping everything into app.module.ts, create individual modules for say pipes or utility components, and include these modules in the app.module. 
+
+Components have private scope, whereas services have global scope and can be injected anywhere. Hence component have to exported from the modules before importing their module into the app.module
+
+(See how UtilsModule.ts exports various pipes, and is itself imported into the app.module)
+
+**Importing and using 3rd party libraries**:
+
+eg. moment.js (https://www.npmjs.com/package/angular-moment)
+```
+npm install angular-moment moment --save
+then do import * as moment from ‘moment’
+```
+
 **Typescript datatypes**:
 ```
 let a: number;
@@ -383,6 +377,16 @@ const colRed = 0; //constants
 enum Color {Red=0, Green=1, Purple=2};
 let col = Color.Green;
 ```
+-----------------
+
+**Q.** How can components share data?
+
+**Ans.** via events or via services.
+
+**Transpiling** 
+is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers. Typescript is a superset of javascript with features that modern browsers cannot understand directly.
+
+TS is not mandatory for writing code angular 2 onwards, but typescript makes things very easy for angular - eg. Decorators. Angular heavily uses decorators for marking Components, modules etc. Dependency injection also becomes very easy when using TS.
 
 **Evolution of angular**:
 
