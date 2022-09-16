@@ -400,6 +400,107 @@ Angular 5: comes with angular CLI. Number, date, currency pipes updates. Router 
 
 Angular 1x versions were called 'angularjs', whereas angular 2x onwards versions are called simply 'angular'.
 
+**API call retry**:
+
+Use retryWhen (part of RxJs) which retries api call in case of failure, and supports delay between each retry
+
+**Subject**:
+
+The Subjects (part of RxJs) are special observable which acts as both observer & observable. They allow us to emit new values to the observable stream using the next method. 
+```
+import { Subject } from "rxjs"
+@Component({...
+    subject$ = new Subject();
+     this.subject$.subscribe(val => {
+      console.log(val);
+    });
+    this.subject$.next("1");
+    this.subject$.next("2");
+    this.subject$.complete();
+```
+
+Another important distinction between observable & subject is that subjects are multicast.
+More than one subscriber can subscribe to a subject. They will share the same instance of the observable. This means that all of them receive the same event when the subject emits it.
+Multiple observers of an observable, on the other hand, will receive a separate instance of the observable.
+
+https://www.tektutorialshub.com/angular/subjects-in-angular/
+
+**Structural vs Attribute directive**:
+
+Structural directives are used for shaping or reshaping HTML DOM by adding, removing elements. eg. ngIf directive
+
+Attribute directives are used to change the appearance or behavior of DOM element. eg. ngStyle directive.
+
+**Content Projection**:
+
+Content projection is used to create flexible, reusable components. In the template of the component, use <ng-content></ng-content>, and then fill these slots when using the compnent.
+
+https://angular.io/guide/content-projection
+
+**ng-container**:
+
+A special element that can hold structural directives without adding new elements to the DOM. Commonly used with ng-if
+```
+<ng-container *ngIf="condition">
+  …
+</ng-container>
+```
+
+https://angular.io/api/core/ng-container#description
+
+**Interceptors**:
+
+Intercept http requests/responses to modify them before passing to the next interceptor in the chain.
+
+https://angular.io/api/common/http/HttpInterceptor
+
+**Hierarchial dependency injection**:
+
+A hierarchical dependency injection system allows us to define different scopes for our dependencies in the component tree.
+
+https://www.w3resource.com/angular/hierarchical-dependency-injectors.php
+
+**Execution context vs Execution stack**:
+
+There are three types of execution context in JavaScript.
+
+1. Global Execution Context — The code that is not inside any function is in the global execution context. It performs two things: it creates a global object which is a window object (in the case of browsers) and sets the value of this to equal to the global object. There can only be one global execution context in a program.
+2. Functional Execution Context — Every time a function is invoked, a brand new execution context is created for that function
+3. Eval Function Execution Context — Code executed inside an eval function.
+
+Execution stack: When the JavaScript engine first encounters your script, it creates a global execution context and pushes it to the current execution stack. Whenever the engine finds a function invocation, it creates a new execution context for that function and pushes it to the top of the stack. LIFO stack.
+
+**NgZone**: A zone is an execution context that persists across async tasks. You can think of it as thread-local storage for JavaScript VMs. 
+
+**Logging using ngx-logger**
+
+https://dzone.com/articles/angular-logging-and-log-back
+
+**CSS Extras**:
+CSS positioning. esp. Sticky vs fixed:
+
+https://www.geeksforgeeks.org/what-is-the-difference-between-positionsticky-and-positionfixed-in-css/
+
+
+**CSS Flexbox**: 
+
+Before the Flexbox Layout module, there were four layout modes:
+
+1. Block, for sections in a webpage
+2. Inline, for text
+3. Table, for two-dimensional table data
+4. Positioned, for explicit position of an element
+
+The Flexible Box Layout Module, makes it easier to design flexible responsive layout structure without using float or positioning.
+used to define how to stack the elemnts: horizontal/vertical/wrap etc.
+
+https://www.w3schools.com/css/css3_flexbox.asp
+
+
+
+**TODO**: ag-grid example to be added in this poc.
+
+
 **References**:
 
 Using Bootstrap with angular: https://medium.com/codingthesmartway-com-blog/using-bootstrap-with-angular-c83c3cee3f4a
