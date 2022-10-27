@@ -470,7 +470,8 @@ There are three types of execution context in JavaScript.
 
 Execution stack: When the JavaScript engine first encounters your script, it creates a global execution context and pushes it to the current execution stack. Whenever the engine finds a function invocation, it creates a new execution context for that function and pushes it to the top of the stack. LIFO stack.
 
-**NgZone**: A zone is an execution context that persists across async tasks. You can think of it as thread-local storage for JavaScript VMs. 
+**NgZone**: Angular lets us work with zones using the NgZone service, which builds on zone.js.A zone is an execution context that persists across async tasks. You can think of it as thread-local storage for JavaScript VMs. Angular uses zones to enable automatic change detection in response to changes made by asynchronous tasks, which otherwise do not trigger 
+Angular's changeEvent. For eg. if you update some DOM element inside settimeout method, this being asynchronous, will not get updated in the DOM. That is where you can use NgZone.
 
 **Logging using ngx-logger**
 
@@ -497,6 +498,21 @@ used to define how to stack the elemnts: horizontal/vertical/wrap etc.
 https://www.w3schools.com/css/css3_flexbox.asp
 
 
+**NgRx**: Similar to Redux, used for reactive state management. Single state is maintained across the application, and it is updated on various events. NgRx is made up of 5 main components:
+
+1. **Store**: One client side data store.
+2. **Actions**: Events.
+3. **Reducers**:  Reducers react to the Actions dispatched and executes a pure function to update the Store. Pure functions are functions that are predictable and have no side effects. Given the same set of inputs, a pure function will always return the same set of outputs.
+4. **Selectors**: Selectors are how our application can listen to state changes.
+5. **Effects**: Effects handle the side effects of each Action. These side effects range from communicating with an external API via HTTP when a certain Action is dispatched to dispatching another Action to update another part of the State.
+
+Read this for more details: https://auth0.com/blog/state-management-in-angular-with-ngrx-1/
+
+**Ng-change**: It's a directive used to call some function, every time an associated ng-model input element changes. The expression is evaluated immediately, unlike the JavaScript onchange event which only triggers at the end of a change (usually, when the user leaves the form element or presses the return key).
+
+```
+<input type="text" ng-change="someFunc()" ng-model="myValue" />
+```
 
 **TODO**: ag-grid example to be added in this poc.
 
