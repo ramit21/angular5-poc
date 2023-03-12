@@ -328,7 +328,7 @@ export class AppComponent {
 ```
 <app-root></app-root> invokes above component in an html.
 
-Angular emulates 'shadow DOM' by encapsulating the style given in the styles-url or directly styles, so that it does not leak to the outsode world.
+Angular emulates 'shadow DOM' by encapsulating the style given in the styles-url or directly styles, so that it does not leak to the outside world.
 
 **constructor vs ngOnInit()**
 
