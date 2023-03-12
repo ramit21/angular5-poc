@@ -28,7 +28,7 @@ ng g s folder/name -> creates service. 's' is shortfrom of service here.
 
 Note that services are created with @Injectable() so that they can be injected directly in constructors of controllers or other services. 
 @Injectable(provider = root) is used for singleton services that are used across the application's component tree, where as services with just 
-@Injectable() get new instance created, everytime a component where the service is injected gets created.
+@Injectable() get new instance created, everytime a component where the service is injected gets created (Hierarchial dependency injection).
 
 Bootstrapping Angular: index.html is the starting point, which has the <app-root> (or as named) tag that points to main app component tag.
 
