@@ -151,7 +151,7 @@ There are two categories of pipes: pure and impure. By default pipes are pur
 
 A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe.
 
-An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes inlcude change in array object or composite object contents.
+An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes include change in array object or composite object contents.
 
 ## Angular Directives
 Directives work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives ehich take a selector as a parameter.
