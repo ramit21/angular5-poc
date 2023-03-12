@@ -495,7 +495,7 @@ Before the Flexbox Layout module, there were four layout modes:
 4. Positioned, for explicit position of an element
 
 The Flexible Box Layout Module, makes it easier to design flexible responsive layout structure without using float or positioning.
-used to define how to stack the elemnts: horizontal/vertical/wrap etc.
+used to define how to stack the elements: horizontal/vertical/wrap etc.
 
 https://www.w3schools.com/css/css3_flexbox.asp
 
