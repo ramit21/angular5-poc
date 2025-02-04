@@ -435,7 +435,7 @@ Attribute directives are used to change the appearance or behavior of DOM elemen
 
 **Content Projection**:
 
-Content projection is used to create flexible, reusable components. In the template of the component, use <ng-content></ng-content>, and then fill these slots when using the compnent.
+Content projection is used to create flexible, reusable components. In the template of the component, use '<ng-content></ng-content>', and then fill these slots when using another compnent.
 
 https://angular.io/guide/content-projection
 
@@ -472,8 +472,93 @@ There are three types of execution context in JavaScript.
 
 Execution stack: When the JavaScript engine first encounters your script, it creates a global execution context and pushes it to the current execution stack. Whenever the engine finds a function invocation, it creates a new execution context for that function and pushes it to the top of the stack. LIFO stack.
 
-**NgZone**: Angular lets us work with zones using the NgZone service, which builds on zone.js.A zone is an execution context that persists across async tasks. You can think of it as thread-local storage for JavaScript VMs. Angular uses zones to enable automatic change detection in response to changes made by asynchronous tasks, which otherwise do not trigger 
-Angular's changeEvent. For eg. if you update some DOM element inside settimeout method, this being asynchronous, will not get updated in the DOM. That is where you can use NgZone.
+**Q. How does Angular handle dependency injection?**
+
+Ans. **Providers** first defines how a dependency (service) is created. 
+Provdder can be registered at 3 levels:
+1. Module level in app.module under @NgModule.
+2. Component level via @Component annotation
+3. Root level vi @Injectable(providedIn: 'root')
+
+Then these are most commonly injected into components via constructor injection.
+
+**Q. Describe the change detection mechanism in Angular.**
+
+Ans. Angular uses zones to detect asyncrhonous tasks to trigger tasks such as events, http calls, or timers are completed. When such events are finished Angular triggers change detection to update the view.
+
+Angular has two change detection strategies:
+1. Default: Every time an event occurs, Angular runs change detection for the entire component tree.
+2. OnPush: Angular runs change detection only when the component's input properties change. This is useful for optimizing performance.
+
+You can set the change detection strategy using the ChangeDetectionStrategy enum in the component decorator:
+```
+@Component({
+  selector: 'app-my-component',
+  templateUrl: './my-component.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
+```
+
+**NgZone**: Asynchronous events like setTimeout() do trigger change detection in angular. However, if you are showing a timer on ui, you dont want change detection to occur every time on entire DOM, as it can slow down UI. So optimize, use NgZone to run the timer outside angular's normal detection zone. This allows for fine grained control over a specific event wihtout triggering default change detection for the event. 
+
+eg:
+
+ ```
+import { Component, NgZone } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  constructor(private ngZone: NgZone) {}
+  detectChanges() {
+    this.ngZone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this.ngZone.run(() => {
+          // Your code that triggers change detection
+          console.log('Change detected inside Angular zone');
+        });
+      }, 2000);
+    });
+  }
+}
+ ```
+Another option is to use **ChangeDetectorRef** eg:
+```
+export class AppComponent {
+  constructor(private cdRef: ChangeDetectorRef) {}
+  detectChanges() {
+    setTimeout(() => {
+      // Your code that triggers change detection
+      console.log('Change detected using ChangeDetectorRef');
+      this.cdRef.detectChanges();
+    }, 2000);
+  }
+}
+```
+
+**Q. How would you optimize an Angular application for performance?**
+Ans. 
+1. Use ChangeDetectionStrategy.OnPush to minimize the number of change detection cycles.
+2. Use NGZone for finer control of timer tasks change detection.
+3. Lazy load modules
+4. AOT compilation, reducing work on browser.
+5. Webpack bundling and minification.
+
+**Q. What is Angular Universal?**
+
+Ans. It is used for server side rendering (SSR) in Angular. Server side rendering helps in better SEO (Search Engine Optimisation) rating as search egnine crawlers can better index the complete HTML as send from server side.
+
+**Q. State management in Angular?**
+
+Ans. Save the state in service, or use NgRx.
+
+**Q. Explain the difference between template-driven and reactive forms.**
+
+Ans. Template driven uses angular provided directives (like ngModel, ngForm, and ngModelGroup). They are easy to setup and implicitly provide 2 way binding, but provide only baisc set of validations.
+
+Reactive forms on the other hand are more suited for larger projects, which require detailed validations. Form directives are explcitly bound to template using Angular directives. Form logic is defined in the component class using form control objects (FormGroup, FormControl, FormArray)
 
 **Logging using ngx-logger**
 
@@ -515,6 +600,9 @@ Read this for more details: https://auth0.com/blog/state-management-in-angular-w
 ```
 <input type="text" ng-change="someFunc()" ng-model="myValue" />
 ```
+
+**Q. Describe a scenario where you used Angular to solve a complex problem.**
+**Ans.** Replaced a legacy applciation by creating a new Angular application, with its clinet side rendering, and ag-grid features - gave a better UX to users.
 
 **TODO**: ag-grid example to be added in this poc.
 
