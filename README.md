@@ -151,7 +151,18 @@ A pure pipe is only called when Angular detects a change in the value or the par
 
 An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes include change in array object or composite object contents.
 
-You can create customer pipes as well - examples included in the repo.
+You can create customer pipes as well - examples included in the repo. eg.
+```
+@Pipe({
+  name: 'examplePurePipe',
+  pure: true // This is the default
+})
+export class ExamplePurePipe implements PipeTransform {
+  transform(value: any): any {
+    // transformation logic
+  }
+}
+```
 
 ## Angular Directives
 Directives work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives which take a selector as a parameter.
