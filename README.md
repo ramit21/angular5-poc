@@ -394,7 +394,7 @@ let col = Color.Green;
 
 **Q.** How can components share data?
 
-**Ans.** via events or via services.
+**Ans.** 1. events 2. via services 3. NgRx
 
 **Transpiling** 
 is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers. Typescript is a superset of javascript with features that modern browsers cannot understand directly.
