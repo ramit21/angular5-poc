@@ -139,9 +139,7 @@ this.route.snapshot.paramMap.get('page');
 ```
 
 ## Pipes
-https://angular.io/guide/pipes
-
-Transforming data in templates using angular provided pipes or by creating custom pipes. Pipes also take optional arguments for fine tuning the results eg.
+Used for transforming data in templates. Pipes also take optional arguments for fine tuning the results eg.
 ```
 <p>The hero's birthday is {{ birthday | date:"MM/dd/yy" }} </p> or via binding:
 <p>The hero's birthday is {{ birthday | date:format }} </p> where format is a member of component class
@@ -152,6 +150,8 @@ There are two categories of pipes: pure and impure. By default pipes are pur
 A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe.
 
 An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes. These changes include change in array object or composite object contents.
+
+You can create customer pipes as well - examples included in the repo.
 
 ## Angular Directives
 Directives work in 2 way binding mode. As the component value changes, the html dom is re-rendered as per the directive used. You can also create your custom directives using @Directives which take a selector as a parameter.
