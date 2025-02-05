@@ -489,7 +489,7 @@ Ans. **Providers** first defines how a dependency (service) is created.
 Provdder can be registered at 3 levels:
 1. Module level in app.module under @NgModule.
 2. Component level via @Component annotation
-3. Root level vi @Injectable(providedIn: 'root')
+3. Root level via @Injectable(providedIn: 'root')
 
 Then these are most commonly injected into components via constructor injection.
 
