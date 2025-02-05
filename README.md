@@ -392,10 +392,6 @@ let col = Color.Green;
 ```
 -----------------
 
-**Q.** How can components share data?
-
-**Ans.** 1. events 2. via services 3. NgRx
-
 **Transpiling** 
 is the process of compiling one language to another. In angular, Traceur compiler converts Typescript into java script code for the browsers. Typescript is a superset of javascript with features that modern browsers cannot understand directly.
 
@@ -483,6 +479,12 @@ There are three types of execution context in JavaScript.
 
 Execution stack: When the JavaScript engine first encounters your script, it creates a global execution context and pushes it to the current execution stack. Whenever the engine finds a function invocation, it creates a new execution context for that function and pushes it to the top of the stack. LIFO stack.
 
+----------------
+
+**Q. How can components share data?  OR How is state managed in angular?** 
+
+Ans. 1. events 2. via services 3. NgRx
+
 **Q. How does Angular handle dependency injection?**
 
 Ans. **Providers** first defines how a dependency (service) is created. 
@@ -509,7 +511,7 @@ You can set the change detection strategy using the ChangeDetectionStrategy enum
   changeDetection: ChangeDetectionStrategy.OnPush
 ```
 
-**NgZone**: Asynchronous events like setTimeout() do trigger change detection in angular. However, if you are showing a timer on ui, you dont want change detection to occur every time on entire DOM, as it can slow down UI. So optimize, use NgZone to run the timer outside angular's normal detection zone. This allows for fine grained control over a specific event wihtout triggering default change detection for the event. 
+**NgZone**: Asynchronous events like setTimeout() do trigger change detection in angular. However, if you are showing a timer on ui, you dont want change detection to occur every time on entire DOM, as it can slow down UI. So optimize, use NgZone to run the timer outside angular's normal detection zone. This allows for fine grained control over a specific event without triggering default change detection for the event. 
 
 eg:
 
@@ -560,10 +562,6 @@ Ans.
 **Q. What is Angular Universal?**
 
 Ans. It is used for server side rendering (SSR) in Angular. Server side rendering helps in better SEO (Search Engine Optimisation) rating as search egnine crawlers can better index the complete HTML as send from server side.
-
-**Q. State management in Angular?**
-
-Ans. Save the state in service, or use NgRx.
 
 **Q. Explain the difference between template-driven and reactive forms.**
 
