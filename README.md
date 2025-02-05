@@ -446,7 +446,7 @@ Attribute directives are used to change the appearance or behavior of DOM elemen
 
 **Content Projection**:
 
-Content projection is used to create flexible, reusable components. In the template of the component, use '<ng-content></ng-content>', and then fill these slots when using another compnent.
+Content projection is used to create flexible, reusable components. In the template of the component, use **ng-content**, and then fill these slots when using another compnent.
 
 https://angular.io/guide/content-projection
 
